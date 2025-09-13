@@ -1,6 +1,10 @@
+
 services:
   fastapi:
-    build: ./backend
+    environment:
+      - PYTHONPATH=/app
+    build:
+      context: ./backend
     ports:
       - "8000:8000"
     depends_on:
