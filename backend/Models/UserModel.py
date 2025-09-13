@@ -1,6 +1,10 @@
+import os
+
 from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 from typing import Optional
+
+
 
 class User(BaseModel):
     id: Optional[str] = Field(default=None, alias="_id")
@@ -13,7 +17,7 @@ class User(BaseModel):
     icon: Optional[str] = ""
 
     class Config:
-        allow_population_by_field_name = True
+        validate_by_name = True
 
 class UserOut(BaseModel):
     id: Optional[str] = Field(default=None, alias="_id")
@@ -25,4 +29,11 @@ class UserOut(BaseModel):
     icon: Optional[str] = ""
 
     class Config:
-        allow_population_by_field_name = True
+        validate_by_name = True
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None
