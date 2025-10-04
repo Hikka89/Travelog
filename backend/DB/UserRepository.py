@@ -1,20 +1,17 @@
 import os
-from typing import Annotated
-
-import jwt
 from datetime import timedelta, timezone, datetime
 
+import jwt
 from dotenv import load_dotenv
-from fastapi import Depends, HTTPException, status
-from jwt import InvalidTokenError
 from pymongo.database import Database
-from Models.UserModel import User, UserOut, TokenData
-from auth import oauth2_scheme
+
+from Models.UserModel import User, UserOut
 
 load_dotenv()
 
 key = os.getenv('JWT_KEY')
 alg = os.getenv('ALGORITHM')
+
 
 class UserRepository:
     def __init__(self, db: Database):
@@ -59,3 +56,8 @@ class UserRepository:
             return False
         return user
 
+    def add_avatar(self, user: UserOut, avatar: str):
+        self.collection.find_one_and_update({"user_name": user.user_name},
+                                            {"$set": {"avatar": avatar}},
+                                            upsert=True)
+        return
