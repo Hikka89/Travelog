@@ -1,9 +1,7 @@
-import os
-
-from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 from typing import Optional
 
+from pydantic import BaseModel, EmailStr, Field
 
 
 class User(BaseModel):
@@ -21,6 +19,7 @@ class User(BaseModel):
     class Config:
         validate_by_name = True
 
+
 class UserOut(BaseModel):
     id: Optional[str] = Field(default=None, alias="_id")
     user_name: str = Field(..., min_length=1)
@@ -35,9 +34,11 @@ class UserOut(BaseModel):
     class Config:
         validate_by_name = True
 
+
 class Token(BaseModel):
     access_token: str
     token_type: str
+
 
 class TokenData(BaseModel):
     username: str | None = None

@@ -23,7 +23,7 @@ class UserRoutes:
     def __init__(self, repo: UserRepository):
         self.repo = repo
         self.oauth2_scheme = oauth2_scheme
-        self.router = APIRouter()
+        self.router = APIRouter(tags=["Users"])
         self._setup_routes()
 
     def _setup_routes(self):

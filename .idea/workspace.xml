@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="remove password from responses">
-      <change beforePath="$PROJECT_DIR$/.idea/Travelog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Travelog.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="avatar encoding and saving">
+      <change afterPath="$PROJECT_DIR$/backend/DB/PlacesRepository.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/Models/PlacesModel.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/Routes/PlacesRoutes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/DB/UserRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/DB/UserRepository.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/Models/UserModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Models/UserModel.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/Routes/UserRoutes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Routes/UserRoutes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757801560940</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="avatar encoding and saving">
+      <option name="closed" value="true" />
+      <created>1759597555197</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1759597555197</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -118,6 +126,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="create base endpoints and models" />
     <MESSAGE value="remove password from responses" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove password from responses" />
+    <MESSAGE value="avatar encoding and saving" />
+    <option name="LAST_COMMIT_MESSAGE" value="avatar encoding and saving" />
   </component>
 </project>
