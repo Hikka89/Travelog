@@ -13,7 +13,7 @@ class User(BaseModel):
     second_name: Optional[str] = ""
     birthday: datetime = Field(default_factory=datetime.utcnow)
     icon: Optional[str] = ""
-    friends: list[str] = Field(default=[])
+    friends: Optional[list[str]]
     avatar: Optional[str] = ""
 
     class Config:

@@ -22,6 +22,9 @@ class UserRepository:
 
     def get_user_by_email(self, email: str) -> UserOut | None:
         data = self.collection.find_one({"email": email})
+        print(data)
+        if '_id' in data:
+            data['_id'] = str(data['_id'])
         return UserOut(**data) if data else None
 
     def get_all_users(self) -> list[UserOut]:
@@ -43,8 +46,8 @@ class UserRepository:
         encoded_jwt = jwt.encode(to_encode, key, algorithm=alg)
         return encoded_jwt
 
-    def authenticate_user(self, email: str, password: str) -> User or bool:
-        data = self.collection.find_one({"email": email})
+    def authenticate_user(self, username: str, password: str) -> User or bool:
+        data = self.collection.find_one({"user_name": username})
         if data is None:
             return False
         if '_id' in data:
@@ -52,7 +55,7 @@ class UserRepository:
         user = User(**data)
         if not user:
             return False
-        if not (user.password == password and user.email == user.email):
+        if not (user.password == password and user.user_name == username):
             return False
         return user
 

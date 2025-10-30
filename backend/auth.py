@@ -35,7 +35,8 @@ def get_current_user(token: Annotated[str, Depends(oauth2_scheme)]):
         token_data = TokenData(username=username)
     except InvalidTokenError:
         raise credentials_exception
-    data = db['Users'].find_one({"email": token_data.username})
+    print(token_data)
+    data = db['Users'].find_one({"user_name": token_data.username})
     if '_id' in data:
         data['_id'] = str(data['_id'])
     user = User(**data)

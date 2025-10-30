@@ -58,7 +58,7 @@ class UserRoutes:
                 )
             access_token_expires = timedelta(minutes=int(exp))
             access_token = self.repo.create_access_token(
-                data={"sub": user.email}, expires_delta=access_token_expires
+                data={"sub": user.user_name}, expires_delta=access_token_expires
             )
             return Token(access_token=access_token, token_type="bearer")
 
