@@ -10,6 +10,13 @@ services:
     depends_on:
       - mongodb
 
+  frontend:
+    build: ./travelog-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - fastapi
+
   mongodb:
     image: mongo
     ports:
