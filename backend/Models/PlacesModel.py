@@ -1,15 +1,14 @@
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, Field
 
 class Place(BaseModel):
     id: Optional[str] = Field(default=None, alias="_id")
     date: datetime = Field(default_factory=datetime.utcnow)
     latitude: float = Field()
     longitude: float = Field()
-    email: EmailStr
-    password: str = Field(..., min_length=6)
+    username: str = Field(..., min_length=1)
     icon: Optional[str] = ""
     order: Optional[int] = 0
 

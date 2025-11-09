@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="nginx + docker for frontend">
+    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="websocket server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/DB/PlacesRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/DB/PlacesRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Models/PlacesModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Models/PlacesModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Routes/PlacesRoutes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Routes/PlacesRoutes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +18,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Dockerfile" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -136,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761907587359</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="websocket server">
+      <option name="closed" value="true" />
+      <created>1762721860898</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1762721860898</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -157,6 +166,7 @@
     <MESSAGE value="place model" />
     <MESSAGE value="username based auth + fixes" />
     <MESSAGE value="nginx + docker for frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="nginx + docker for frontend" />
+    <MESSAGE value="websocket server" />
+    <option name="LAST_COMMIT_MESSAGE" value="websocket server" />
   </component>
 </project>
