@@ -29,8 +29,8 @@ class UserRepository:
         data = self.collection.update_one({"email": email}, {"password": password})
         return
 
-    def get_user_by_email(self, email: str) -> UserOut | None:
-        data = self.collection.find_one({"email": email})
+    def get_user_by_username(self, username: str) -> UserOut | None:
+        data = self.collection.find_one({"user_name": username})
         print(data)
         if '_id' in data:
             data['_id'] = str(data['_id'])
