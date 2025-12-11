@@ -230,38 +230,8 @@ function ForgotPasswordModal({ isOpen, onClose, onResetPassword }) {
           {step === 3 && (
             <form onSubmit={handleResetPassword} className="space-y-4">
               <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Create your new password. Make sure it's strong and secure.
+                Your new password has been sent to your email.
               </p>
-              
-              <div>
-                <label htmlFor="newPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  New Password
-                </label>
-                <input
-                  id="newPassword"
-                  type="password"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="Enter new password"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Confirm New Password
-                </label>
-                <input
-                  id="confirmPassword"
-                  type="password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-3 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                  placeholder="Confirm new password"
-                  required
-                />
-              </div>
 
               <div className="flex space-x-3">
                 <button
@@ -276,7 +246,7 @@ function ForgotPasswordModal({ isOpen, onClose, onResetPassword }) {
                   disabled={isLoading}
                   className="flex-1 bg-indigo-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                  {isLoading ? 'Resetting...' : 'Reset Password'}
+                  {isLoading ? 'Resetting...' : 'OK'}
                 </button>
               </div>
             </form>
