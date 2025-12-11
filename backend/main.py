@@ -1,4 +1,5 @@
 from fastapi import FastAPI, WebSocket
+from fastapi.middleware.cors import CORSMiddleware
 from pymongo import MongoClient
 
 from ConnectionManager import ConnectionManager
@@ -10,6 +11,14 @@ from Routes.UserRoutes import UserRoutes
 app = FastAPI()
 client = MongoClient("mongodb://mongodb:27017/")
 db = client["travelog"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 try:
     db.list_collection_names()
@@ -26,6 +35,7 @@ places_routes = PlacesRoutes(places_repo)
 
 app.include_router(places_routes.router, prefix="/api/place")
 app.include_router(user_routes.router, prefix="/api")
+
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):

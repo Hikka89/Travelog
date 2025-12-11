@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="place controller and uploader">
+    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="fixes and recovering">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/DB/PlacesRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/DB/PlacesRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/DB/UserRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/DB/UserRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Models/UserModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Models/UserModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Routes/UserRoutes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Routes/UserRoutes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,19 +44,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Docker.Startup.executor": "Run",
-    "Docker.Unnamed.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/kostya89/PycharmProjects/Travelog/travelog-frontend",
-    "settings.editor.selected.configurable": "preferences.updates"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Docker.Startup.executor&quot;: &quot;Run&quot;,
+    &quot;Docker.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kostya89/PycharmProjects/Travelog/travelog-frontend&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.updates&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\kostya89\PycharmProjects\Travelog\travelog-frontend" />
@@ -161,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762722742926</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fixes and recovering">
+      <option name="closed" value="true" />
+      <created>1765474258462</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1765474258462</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,6 +188,7 @@
     <MESSAGE value="nginx + docker for frontend" />
     <MESSAGE value="websocket server" />
     <MESSAGE value="place controller and uploader" />
-    <option name="LAST_COMMIT_MESSAGE" value="place controller and uploader" />
+    <MESSAGE value="fixes and recovering" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes and recovering" />
   </component>
 </project>
