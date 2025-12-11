@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="cors">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/DB/UserRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/DB/UserRepository.py" afterDir="false" />
-    </list>
+    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="fix fix" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -174,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765476742797</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix fix">
+      <option name="closed" value="true" />
+      <created>1765479167783</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1765479167783</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -199,6 +204,7 @@
     <MESSAGE value="place controller and uploader" />
     <MESSAGE value="fixes and recovering" />
     <MESSAGE value="cors" />
-    <option name="LAST_COMMIT_MESSAGE" value="cors" />
+    <MESSAGE value="fix fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix fix" />
   </component>
 </project>
