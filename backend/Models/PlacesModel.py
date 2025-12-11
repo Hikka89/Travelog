@@ -11,6 +11,8 @@ class Place(BaseModel):
     username: str = Field(..., min_length=1)
     icon: Optional[str] = ""
     order: Optional[int] = 0
+    name: Optional[str] = ""
+    description: Optional[str] = ""
 
     class Config:
         validate_by_name = True

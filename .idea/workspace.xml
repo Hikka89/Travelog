@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="fix user endpoint">
+    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="update user">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/DB/UserRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/DB/UserRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Models/UserModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Models/UserModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Routes/UserRoutes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Routes/UserRoutes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765480257698</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="update user">
+      <option name="closed" value="true" />
+      <created>1765484623876</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1765484623876</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -227,6 +232,7 @@
     <MESSAGE value="cors" />
     <MESSAGE value="fix fix" />
     <MESSAGE value="fix user endpoint" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix user endpoint" />
+    <MESSAGE value="update user" />
+    <option name="LAST_COMMIT_MESSAGE" value="update user" />
   </component>
 </project>
