@@ -1,5 +1,7 @@
 import base64
 import os
+import random
+import smtplib
 from datetime import timedelta
 from io import BytesIO
 from typing import Annotated
@@ -17,7 +19,10 @@ from auth import oauth2_scheme, get_current_user
 
 load_dotenv()
 exp = os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES')
-
+server_email = os.getenv('SERVER_EMAIL')
+server_email_pass = os.getenv('SERVER_EMAIL_PASS')
+key = os.getenv('JWT_KEY')
+alg = os.getenv('ALGORITHM')
 
 class UserRoutes:
     def __init__(self, repo: UserRepository):
@@ -43,6 +48,37 @@ class UserRoutes:
         def list_users(
                 current_user: Annotated[UserOut, Depends(get_current_user)]
         ):
+            return self.repo.get_all_users()
+
+        @self.router.post("/recover/message", response_model=list[UserOut])
+        def recover_message(
+                email: str
+        ):
+            rand = random.randint(100000,999999)
+            print(rand)
+            mail = smtplib.SMTP('smtp.mail.ru', 587)
+            mail.starttls()
+            mail.login(server_email, server_email_pass)
+            mail.sendmail(server_email, email, f'Ваш код для восстановления: {rand}')
+            mail.close()
+
+            return self.repo.get_all_users()
+
+        @self.router.get("/recover", response_model=list[UserOut])
+        def recover(
+                code: str,
+                email: str
+        ):
+            user_code = self.repo.get_recovery_code_by_email(email)
+            if code == user_code:
+                rand = random.randint(10000000, 999999999)
+                mail = smtplib.SMTP('smtp.mail.ru', 465)
+                mail.starttls()
+                mail.login(server_email, server_email_pass)
+                mail.sendmail(server_email, email, f'Ваш новый пароль: {rand}')
+                mail.close()
+                self.repo.change_pass(email, str(rand))
+
             return self.repo.get_all_users()
 
         @self.router.post("/token")

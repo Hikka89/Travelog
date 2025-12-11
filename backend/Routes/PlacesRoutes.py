@@ -22,13 +22,13 @@ class PlacesRoutes:
 
     def _setup_routes(self):
         @self.router.post("", response_model=dict)
-        def create_user(place: Place, current_user: Annotated[UserOut, Depends(get_current_user)]):
+        def create_place(place: Place, current_user: Annotated[UserOut, Depends(get_current_user)]):
             place_id = self.repo.create_place(place)
             return {"place_id": str(place_id)}
 
         @self.router.get("", response_model=Place)
-        def get_user(email: str, current_user: Annotated[UserOut, Depends(get_current_user)]):
-            place = self.repo.get_places_by_email(email)
+        def get_place_by_username(username: str, current_user: Annotated[UserOut, Depends(get_current_user)]):
+            place = self.repo.get_places_by_username(username)
             if not place:
                 raise HTTPException(status_code=404, detail="Places not found")
             return place

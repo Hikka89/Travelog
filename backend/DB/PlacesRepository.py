@@ -21,11 +21,3 @@ class PlacesRepository:
                                             {"$set": {"icon": icon}},
                                             upsert=True)
         return
-    # def get_all_users(self) -> list[UserOut]:
-    #     data = []
-    #     for doc in self.collection.find():
-    #         del doc['password']
-    #         if '_id' in doc:
-    #             doc['_id'] = str(doc['_id'])
-    #             data.append(UserOut(**doc))
-    #     return data

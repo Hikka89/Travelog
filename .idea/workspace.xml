@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="websocket server">
+    <list default="true" id="219c2751-087d-464c-803d-fcbe373c06a1" name="Changes" comment="place controller and uploader">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/DB/PlacesRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/DB/PlacesRepository.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Models/PlacesModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Models/PlacesModel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/Routes/PlacesRoutes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Routes/PlacesRoutes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/DB/UserRepository.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/DB/UserRepository.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Models/UserModel.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Models/UserModel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/Routes/UserRoutes.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/Routes/UserRoutes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,17 +48,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.Startup.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/kostya89/PycharmProjects/Travelog/travelog-frontend&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.Startup.executor": "Run",
+    "Docker.Unnamed.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/kostya89/PycharmProjects/Travelog/travelog-frontend",
+    "settings.editor.selected.configurable": "preferences.updates"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\kostya89\PycharmProjects\Travelog\travelog-frontend" />
@@ -68,6 +71,11 @@
       <deployment type="docker-compose.yml">
         <settings>
           <option name="envFilePath" value="" />
+          <option name="envFilePaths">
+            <list>
+              <option value="" />
+            </list>
+          </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
         </settings>
       </deployment>
@@ -77,7 +85,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-dfff61a61320-9cdd278e9d02-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-251.25410.159" />
+        <option value="bundled-python-sdk-7bb8055f9097-cbfc7b97e6b2-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-252.28238.29" />
       </set>
     </attachedChunks>
   </component>
@@ -145,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762721860898</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="place controller and uploader">
+      <option name="closed" value="true" />
+      <created>1762722742926</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762722742926</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +183,7 @@
     <MESSAGE value="username based auth + fixes" />
     <MESSAGE value="nginx + docker for frontend" />
     <MESSAGE value="websocket server" />
-    <option name="LAST_COMMIT_MESSAGE" value="websocket server" />
+    <MESSAGE value="place controller and uploader" />
+    <option name="LAST_COMMIT_MESSAGE" value="place controller and uploader" />
   </component>
 </project>

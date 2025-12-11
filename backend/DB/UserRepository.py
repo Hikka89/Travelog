@@ -20,6 +20,15 @@ class UserRepository:
     def create_user(self, user: User):
         return self.collection.insert_one(user.model_dump()).inserted_id
 
+    def get_recovery_code_by_email(self, email: str) -> str | None:
+        data = self.collection.find_one({"email": email})
+        print(data)
+        return data['recovery_code'] if data else None
+
+    def change_pass(self, email: str, password: str) -> None:
+        data = self.collection.update_one({"email": email}, {"password": password})
+        return
+
     def get_user_by_email(self, email: str) -> UserOut | None:
         data = self.collection.find_one({"email": email})
         print(data)
