@@ -37,7 +37,7 @@ class UserRoutes:
             user_id = self.repo.create_user(user)
             return {"user_id": str(user_id)}
 
-        @self.router.get("/users/{email}", response_model=UserOut)
+        @self.router.get("/users/current", response_model=UserOut)
         def get_user(username: str, current_user: Annotated[UserOut, Depends(get_current_user)]):
             user = self.repo.get_user_by_username(username)
             if not user:
