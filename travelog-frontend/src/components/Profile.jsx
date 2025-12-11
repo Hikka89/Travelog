@@ -1,31 +1,51 @@
 import { useState, useRef } from 'react';
 import Navbar from './Navbar';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 function Profile({ user, onUpdateProfile, onLogout, onUpdateMarkers, onDeleteMarker }) {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: user?.firstName || '',
-    lastName: user?.lastName || '',
+    firstName: user?.first_name || '',
+    lastName: user?.second_name || '',
     country: user?.country || '',
     age: user?.age || '',
-    bio: user?.bio || ''
+    bio: user?.about || ''
   });
   const fileInputRef = useRef(null);
+  console.log(formData);
 
   const handleSave = () => {
     if (onUpdateProfile) {
-      onUpdateProfile(formData);
+      const response = axios.patch(`http://127.0.0.1:8000/api/users`, {
+        "country": formData.country,
+        "age": formData.age,
+        "about": formData.bio,
+        "first_name": formData.firstName,
+        "second_name": formData.lastName
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization':`Bearer ${Cookies.get('jwt')}`
+        }
+      });
+      response.then(data => {
+        if (data.status == 200) {
+          onUpdateProfile(formData);
+          alert('Данные изменены');
+        }
+      })
     }
     setIsEditing(false);
   };
 
   const handleCancel = () => {
     setFormData({
-      firstName: user?.firstName || '',
-      lastName: user?.lastName || '',
+      firstName: user?.first_name || '',
+      lastName: user?.second_name || '',
       country: user?.country || '',
       age: user?.age || '',
-      bio: user?.bio || ''
+      bio: user?.about || ''
     });
     setIsEditing(false);
   };
@@ -36,7 +56,18 @@ function Profile({ user, onUpdateProfile, onLogout, onUpdateMarkers, onDeleteMar
       const reader = new FileReader();
       reader.onload = (e) => {
         const newAvatar = e.target.result;
-        onUpdateProfile({ ...user, avatar: newAvatar });
+        console.log(newAvatar);
+        const response = axios.post(`http://127.0.0.1:8000/api/users/avatar`, {file:file}, {
+          headers: {
+            'Content-Type': 'multipart/form-data', 
+            'Authorization':`Bearer ${Cookies.get('jwt')}`
+          }
+        });
+        response.then(data => {
+          if (data.status == 200) {
+            alert('Вы загрузили аватарку');
+          }
+        })
       };
       reader.readAsDataURL(file);
     }
@@ -69,7 +100,7 @@ function Profile({ user, onUpdateProfile, onLogout, onUpdateMarkers, onDeleteMar
             <div className="flex-shrink-0 flex flex-col items-center w-full xl:w-auto">
               <div className="relative group">
                 <img 
-                  src={user.avatar} 
+                  src={`data:image/webp;base64,${user.avatar}`}
                   alt="Profile" 
                   className="w-28 h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full object-cover border-4 border-white dark:border-gray-700 shadow-lg"
                 />
@@ -120,7 +151,7 @@ function Profile({ user, onUpdateProfile, onLogout, onUpdateMarkers, onDeleteMar
                     {isEditing ? (
                       <BioEdit formData={formData} setFormData={setFormData} />
                     ) : (
-                      <BioDisplay user={user} />
+                      <BioDisplay formData={formData} />
                     )}
                   </div>
                   
@@ -277,7 +308,7 @@ function ProfileInfo({ user, markersCount }) {
   return (
     <div className="mt-4 space-y-2">
       <p className="text-lg text-gray-700 dark:text-gray-300">
-        {user.firstName} {user.lastName}
+        {user.first_name} {user.second_name}
       </p>
       <div className="flex flex-wrap gap-4 text-gray-600 dark:text-gray-400">
         <span className="flex items-center">
@@ -314,12 +345,12 @@ function BioEdit({ formData, setFormData }) {
   );
 }
 
-function BioDisplay({ user }) {
+function BioDisplay({ formData }) {
   return (
     <div>
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">About Me</h3>
       <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-        {user.bio || "No bio yet. Tell us about yourself!"}
+        {formData.bio || "No bio yet. Tell us about yourself!"}
       </p>
     </div>
   );

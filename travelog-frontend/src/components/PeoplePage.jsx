@@ -1,6 +1,9 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import React from 'react';
 
 // Фейковые данные пользователей
 const mockUsers = [
@@ -120,19 +123,35 @@ const mockUsers = [
   }
 ];
 
+
+
 function PeoplePage({ user, onLogout }) {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  
+  const [realUsers, setRealUsers] = useState([]);
+  useEffect(() => {
+    const userResponse = axios.get(`http://127.0.0.1:8000/api/users`, {headers:{
+      'Authorization':`Bearer ${Cookies.get('jwt')}`
+    }
+    });
+    userResponse.then(userdata =>{
+      setRealUsers(userdata.data);
+      console.log(userdata);
+    })
+  }, []);
 
   // Фильтрация пользователей по поисковому запросу
   const filteredUsers = useMemo(() => {
-    return mockUsers.filter(person =>
-      person.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      person.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    return realUsers.filter(person =>
+      person.user_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      person.first_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      person.second_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       person.country.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }, [searchTerm]);
+  }, [searchTerm, realUsers]);
+
+  console.log(filteredUsers);
 
   const handleViewProfile = (userId) => {
     navigate(`/user/${userId}`);
@@ -199,7 +218,7 @@ function PeoplePage({ user, onLogout }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredUsers.map((person) => (
               <UserCard 
-                key={person.id} 
+                key={person._id} 
                 user={person} 
                 onViewProfile={handleViewProfile}
               />
@@ -219,16 +238,16 @@ function UserCard({ user, onViewProfile }) {
       <div className="p-6">
         <div className="flex items-start space-x-4">
           <img 
-            src={user.avatar} 
-            alt={user.username}
+            src={`data:image/webp;base64,${user.avatar}`}
+            alt={user.user_name}
             className="w-16 h-16 rounded-full object-cover border-2 border-white dark:border-gray-700 shadow-md"
           />
           <div className="flex-1 min-w-0">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white truncate">
-              {user.firstName} {user.lastName}
+              {user.first_name} {user.second_name}
             </h3>
             <p className="text-gray-500 dark:text-gray-400 text-sm mb-1">
-              @{user.username}
+              @{user.user_name}
             </p>
             <div className="flex items-center text-sm text-gray-600 dark:text-gray-300">
               <span className="mr-3 flex items-center">
@@ -245,7 +264,7 @@ function UserCard({ user, onViewProfile }) {
 
         {/* Био */}
         <p className="mt-4 text-gray-600 dark:text-gray-300 text-sm line-clamp-2">
-          {user.bio}
+          {user.about}
         </p>
 
         {/* Статистика */}
@@ -253,14 +272,14 @@ function UserCard({ user, onViewProfile }) {
           <div className="flex items-center space-x-4">
             <span className="flex items-center text-gray-600 dark:text-gray-300">
               <span className="mr-1">📌</span>
-              {user.markers.length} memories
+              {/* {user.markers.length} memories */}
             </span>
           </div>
         </div>
       </div>
 
       {/* Галерея фотографий из маркеров */}
-      {user.markers.length > 0 && (
+      {/*user.markers.length > 0 && (
         <div className="px-6 pb-4">
           <div className="flex space-x-2 overflow-x-auto pb-2">
             {user.markers.slice(0, 3).map((marker, index) => (
@@ -278,12 +297,12 @@ function UserCard({ user, onViewProfile }) {
             )}
           </div>
         </div>
-      )}
+      )*/}
 
       {/* Кнопка просмотра профиля */}
       <div className="px-6 pb-6">
         <button
-          onClick={() => onViewProfile(user.id)}
+          onClick={() => onViewProfile(user._id)}
           className="w-full bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white py-2 px-4 rounded-lg text-sm font-medium transition-colors duration-200"
         >
           View Profile

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ForgotPasswordModal from './ForgotPasswordModal';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 function AuthPage({ onLogin, mockUser }) {
   const [activeForm, setActiveForm] = useState('signin');
@@ -13,19 +15,70 @@ function AuthPage({ onLogin, mockUser }) {
     const formData = new FormData(e.target);
     const username = formData.get('username');
     const password = formData.get('password');
-
-    if (username === mockUser.username && password === mockUser.password) {
-      setError('');
-      onLogin(mockUser);
-      navigate('/profile');
-    } else {
-      setError('Invalid username or password');
+    
+    try {
+      const formData = new FormData();
+      formData.append('username', username);
+      formData.append('password', password);
+      
+      // Отправляем запрос
+      const response = axios.post(`http://127.0.0.1:8000/api/token`, formData, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+      response.then(data => {
+        console.log(data);
+        Cookies.set('jwt', data.data.access_token, {expires:365});
+        if (data.status == 200 && data.data.access_token) {
+          setError('');
+          const userResponse = axios.get(`http://127.0.0.1:8000/api/users/current?username=${username}`, {headers:{
+            'Authorization':`Bearer ${Cookies.get('jwt')}`
+          }
+          });
+          userResponse.then(userdata =>{
+            console.log(userdata);
+            onLogin(userdata.data);
+            navigate('/profile');
+          })
+          
+        } else {
+          setError('Invalid username or password');
+        }
+      })
+        
+      } catch (error) {
+        console.error('Ошибка:', error.response?.data || error.message);
     }
+ 
   };
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    alert('Registration functionality coming soon!');
+    const formData = new FormData(e.target);
+    const username = formData.get('username');
+    const password = formData.get('password');
+    const email = formData.get('email');
+    const confirmPassword = formData.get('confirmPassword');
+    if (confirmPassword == password) {
+     
+      
+      // Отправляем запрос
+      const response = axios.post(`http://127.0.0.1:8000/api/users/register`, {'user_name': username, 'password':password, 'email':email}, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      response.then(data => {
+        if (data.status == 200) {
+          alert('Вы зарегистрированы');
+        }
+      })
+    }
+    else {
+      alert('Пароли не совпадают');
+    }
+
   };
 
   const handleResetPassword = (email, newPassword) => {

@@ -1,6 +1,8 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 // Фейковые данные пользователей (те же что и в PeoplePage)
 const mockUsers = [
@@ -144,8 +146,20 @@ function UserProfilePage({ user, onLogout }) {
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const [realUsers, setRealUsers] = useState([]);
+  useEffect(() => {
+    const userResponse = axios.get(`http://127.0.0.1:8000/api/users`, {headers:{
+      'Authorization':`Bearer ${Cookies.get('jwt')}`
+    }
+    });
+    userResponse.then(userdata =>{
+      setRealUsers(userdata.data);
+      console.log(userdata);
+    })
+  }, []);
+
   // Находим пользователя по ID
-  const profileUser = mockUsers.find(u => u.id === parseInt(userId));
+  const profileUser = realUsers.find(u => u._id == userId);
 
   if (!profileUser) {
     return (
@@ -207,14 +221,14 @@ function UserProfilePage({ user, onLogout }) {
             {/* Avatar Section */}
             <div className="flex-shrink-0 flex flex-col items-center w-full xl:w-auto">
               <img 
-                src={profileUser.avatar} 
+                src={`data:image/webp;base64,${profileUser.avatar}`}
                 alt="Profile" 
                 className="w-28 h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 rounded-full object-cover border-4 border-white dark:border-gray-700 shadow-lg"
               />
               
               {/* Статистика */}
               <div className="xl:hidden w-full mt-6">
-                <StatsSection markersCount={profileUser.markers.length} />
+                {/* <StatsSection markersCount={profileUser.markers.length} /> */}
               </div>
             </div>
             
@@ -224,10 +238,10 @@ function UserProfilePage({ user, onLogout }) {
                 {/* Основные данные пользователя */}
                 <div className="flex-grow">
                   <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                    {profileUser.username}
+                    {profileUser.user_name}
                   </h1>
                   
-                  <ProfileInfo user={profileUser} markersCount={profileUser.markers.length} />
+                  <ProfileInfo user={profileUser} markersCount={1} />
                   
                   {/* Bio Section */}
                   <div className="mt-6">
@@ -237,7 +251,7 @@ function UserProfilePage({ user, onLogout }) {
                 
                 {/* Статистика - теперь справа на больших экранах */}
                 <div className="hidden xl:block w-80 flex-shrink-0">
-                  <StatsSection markersCount={profileUser.markers.length} />
+                  <StatsSection markersCount={1} />
                 </div>
               </div>
             </div>
@@ -248,11 +262,11 @@ function UserProfilePage({ user, onLogout }) {
         <div className="mb-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-              Travel Memories ({profileUser.markers.length})
+              {/* Travel Memories ({profileUser.markers.length}) */}
             </h2>
           </div>
           
-          {profileUser.markers.length === 0 ? (
+          {/* {profileUser.markers.length === 0 ? (
             <div className="text-center py-12">
               <div className="text-gray-400 dark:text-gray-500 text-6xl mb-4">🌎</div>
               <p className="text-gray-500 dark:text-gray-400 text-lg">
@@ -269,7 +283,7 @@ function UserProfilePage({ user, onLogout }) {
                 />
               ))}
             </div>
-          )}
+          )} */}
         </div>
       </div>
 
@@ -354,7 +368,7 @@ function ProfileInfo({ user, markersCount }) {
   return (
     <div className="mt-4 space-y-2">
       <p className="text-lg text-gray-700 dark:text-gray-300">
-        {user.firstName} {user.lastName}
+        {user.first_name} {user.second_name}
       </p>
       <div className="flex flex-wrap gap-4 text-gray-600 dark:text-gray-400">
         <span className="flex items-center">
@@ -379,7 +393,7 @@ function BioDisplay({ user }) {
     <div>
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">About Me</h3>
       <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-        {user.bio || "No bio yet."}
+        {user.about || "No bio yet."}
       </p>
     </div>
   );
