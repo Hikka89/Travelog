@@ -11,6 +11,9 @@ class User(BaseModel):
     password: str = Field(..., min_length=6)
     first_name: Optional[str] = ""
     second_name: Optional[str] = ""
+    country: Optional[str] = ""
+    age: Optional[str] = ""
+    about: Optional[str] = ""
     birthday: datetime = Field(default_factory=datetime.utcnow)
     icon: Optional[str] = ""
     avatar: Optional[str] = ""
@@ -26,6 +29,9 @@ class UserOut(BaseModel):
     email: EmailStr
     first_name: Optional[str] = ""
     second_name: Optional[str] = ""
+    country: Optional[str] = ""
+    age: Optional[str] = ""
+    about: Optional[str] = ""
     birthday: datetime = Field(default_factory=datetime.utcnow)
     icon: Optional[str] = ""
     avatar: Optional[str] = ""
@@ -33,6 +39,12 @@ class UserOut(BaseModel):
     class Config:
         validate_by_name = True
 
+class UserEdit(BaseModel):
+    country: Optional[str] = ""
+    age: Optional[str] = ""
+    about: Optional[str] = ""
+    first_name: Optional[str] = ""
+    second_name: Optional[str] = ""
 
 class Token(BaseModel):
     access_token: str

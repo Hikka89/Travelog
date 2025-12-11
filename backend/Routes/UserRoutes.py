@@ -14,7 +14,7 @@ from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm
 
 from DB.UserRepository import UserRepository
-from Models.UserModel import User, UserOut, Token
+from Models.UserModel import User, UserOut, Token, UserEdit
 from auth import oauth2_scheme, get_current_user
 
 load_dotenv()
@@ -49,6 +49,14 @@ class UserRoutes:
                 current_user: Annotated[UserOut, Depends(get_current_user)]
         ):
             return self.repo.get_all_users()
+
+        @self.router.patch("/users")
+        def list_users(
+                user: UserEdit,
+                current_user: Annotated[UserOut, Depends(get_current_user)]
+        ):
+            self.repo.change_user(current_user.user_name,user)
+            return
 
         @self.router.post("/recover/message", response_model=list[UserOut])
         def recover_message(

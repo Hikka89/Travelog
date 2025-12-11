@@ -5,7 +5,7 @@ import jwt
 from dotenv import load_dotenv
 from pymongo.database import Database
 
-from Models.UserModel import User, UserOut
+from Models.UserModel import User, UserOut, UserEdit
 
 load_dotenv()
 
@@ -28,6 +28,18 @@ class UserRepository:
     def change_pass(self, email: str, password: str) -> None:
         data = self.collection.update_one({"email": email}, {"password": password})
         return
+
+    def change_user(self,username: str,  obj: UserEdit) -> None:
+        data = self.collection.update_one({"user_name": username}, {
+            "$set": {
+                "country": obj.country,
+                "age": obj.age,
+                "about": obj.about,
+                "first_name": obj.first_name,
+                "second_name": obj.second_name
+            }
+        })
+        return self.collection.find_one({"user_name": username})
 
     def get_user_by_username(self, username: str) -> UserOut | None:
         data = self.collection.find_one({"user_name": username})
