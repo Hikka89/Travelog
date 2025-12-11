@@ -53,12 +53,14 @@ function App() {
     setIsAuthenticated(false);
   };
 
+  //начало прикола
   const handleUpdateProfile = (updatedData) => {
     setUser(prev => ({
       ...prev,
       ...updatedData
     }));
   };
+  //конец прикола
 
   const handleAddMarker = (newMarker) => {
     setUser(prev => ({
