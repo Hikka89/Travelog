@@ -13,8 +13,13 @@ class PlacesRepository:
         return self.collection.insert_one(place.model_dump()).inserted_id
 
     def get_places_by_username(self, username: str) -> list[Place] | None:
-        data = self.collection.find({"username": username})
-        return data if data else None
+        data = []
+        for doc in self.collection.find({"username": username}):
+            if '_id' in doc:
+                print(doc)
+                doc['_id'] = str(doc['_id'])
+                data.append(doc)
+        return data
 
     def add_icon(self, image_id: str, user: UserOut, icon: str):
         self.collection.find_one_and_update({"username": user.user_name, "_id": ObjectId(image_id)},
