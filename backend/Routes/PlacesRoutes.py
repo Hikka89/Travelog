@@ -26,12 +26,12 @@ class PlacesRoutes:
             place_id = self.repo.create_place(place)
             return {"place_id": str(place_id)}
 
-        @self.router.get("", response_model=Place)
+        @self.router.get("", response_model=list[Place])
         def get_place_by_username(username: str, current_user: Annotated[UserOut, Depends(get_current_user)]):
-            place = self.repo.get_places_by_username(username)
-            if not place:
+            places = self.repo.get_places_by_username(username)
+            if not places:
                 raise HTTPException(status_code=404, detail="Places not found")
-            return place
+            return places
 
         @self.router.post("/icon")
         async def upload_image(image_id: str, current_user: Annotated[UserOut, Depends(get_current_user)],
